@@ -1,13 +1,13 @@
 ---
 title: Securing Kubernetes Dashboard | Kubernetes Ingress
 menu:
-  product_voyager_7.1.1:
+  product_voyager_7.2.0:
     identifier: oauth2-dashboard
     name: Kubernetes Dashboard
     parent: oauth2-security
     weight: 20
 product_name: voyager
-menu_name: product_voyager_7.1.1
+menu_name: product_voyager_7.2.0
 section_menu_id: guides
 ---
 
@@ -70,7 +70,7 @@ spec:
         - name: OAUTH2_PROXY_CLIENT_SECRET
           value: ...
         - OAUTH2_PROXY_COOKIE_SECRET = ...
-        image: appscode/oauth2_proxy:2.2.0
+        image: appscode/oauth2_proxy:2.3.0
         imagePullPolicy: Always
         name: oauth2-proxy
         ports:

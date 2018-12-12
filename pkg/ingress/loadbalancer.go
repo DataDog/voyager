@@ -32,6 +32,7 @@ import (
 	"k8s.io/apimachinery/pkg/util/sets"
 	"k8s.io/client-go/kubernetes"
 	core_listers "k8s.io/client-go/listers/core/v1"
+	"k8s.io/client-go/tools/record"
 )
 
 type loadBalancerController struct {
@@ -50,7 +51,8 @@ func NewLoadBalancerController(
 	serviceLister core_listers.ServiceLister,
 	endpointsLister core_listers.EndpointsLister,
 	cfg config.Config,
-	ingress *api.Ingress) Controller {
+	ingress *api.Ingress,
+	recorder record.EventRecorder) Controller {
 	return &loadBalancerController{
 		controller: &controller{
 			logger:          log.New(ctx),
@@ -63,7 +65,7 @@ func NewLoadBalancerController(
 			EndpointsLister: endpointsLister,
 			cfg:             cfg,
 			Ingress:         ingress,
-			recorder:        eventer.NewEventRecorder(kubeClient, "voyager operator"),
+			recorder:        recorder,
 		},
 	}
 }
@@ -330,6 +332,9 @@ func (c *loadBalancerController) ensureService() (*core.Service, kutil.VerbType,
 				// https://github.com/appscode/voyager/issues/276
 				// ref: https://kubernetes.io/docs/tasks/services/source-ip/#source-ip-for-services-with-typeloadbalancer
 				obj.Spec.ExternalTrafficPolicy = core.ServiceExternalTrafficPolicyTypeLocal
+				if c.Ingress.HealthCheckNodeport() > 0 {
+					obj.Spec.HealthCheckNodePort = int32(c.Ingress.HealthCheckNodeport())
+				}
 			}
 		}
 

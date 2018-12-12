@@ -1,13 +1,13 @@
 ---
 title: Configure Ingress Annotations
 menu:
-  product_voyager_7.1.1:
+  product_voyager_7.2.0:
     identifier: annotations-configuration
     name: Annotations
     parent: config-ingress
     weight: 1
 product_name: voyager
-menu_name: product_voyager_7.1.1
+menu_name: product_voyager_7.2.0
 section_menu_id: guides
 ---
 > New to Voyager? Please start [here](/docs/concepts/overview.md).
@@ -56,6 +56,7 @@ Below is the full list of supported annotations:
 | [ingress.appscode.com/ssl-passthrough](/docs/guides/ingress/configuration/ssl-passthrough.md) | bool | `false` |
 | [ingress.appscode.com/rewrite-target](/docs/guides/ingress/configuration/rewrite-target.md) | string | |
 | [ingress.appscode.com/keep-source-ip](/docs/guides/ingress/configuration/keep-source-ip.md) | bool | `false` |
+| [ingress.appscode.com/health-check-nodeport](/docs/guides/ingress/configuration/keep-source-ip.md) | int | |
 | [ingress.appscode.com/load-balancer-ip](/docs/guides/ingress/configuration/loadbalancer-ip.md) | string | |
 | [ingress.appscode.com/annotations-pod](/docs/guides/ingress/configuration/pod-annotations.md) | map | |
 | [ingress.appscode.com/annotations-service](/docs/guides/ingress/configuration/service-annotations.md) | map | |
@@ -76,3 +77,5 @@ Below is the full list of supported annotations:
 | [ingress.appscode.com/workload-kind](/docs/guides/ingress/pod-placement.md#choosing-workload-kind) | string | `Deployment` |
 | [ingress.appscode.com/node-selector](/docs/guides/ingress/pod-placement.md#using-node-selector) | map | |
 | [ingress.appscode.com/tolerations](/docs/guides/ingress/pod-placement.md#using-taints-and-toleration) | array | |
+| [ingress.appscode.com/check](/docs/guides/ingress/configuration/health-check.md) | bool | `false` |
+| [ingress.appscode.com/check-port](/docs/guides/ingress/configuration/health-check.md) | int | |

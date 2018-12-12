@@ -1,13 +1,13 @@
 ---
 title: Configure External DNS for Kubernetes Ingress
 menu:
-  product_voyager_7.1.1:
+  product_voyager_7.2.0:
     identifier: external-dns-dns
     name: External DNS
     parent: dns-ingress
     weight: 10
 product_name: voyager
-menu_name: product_voyager_7.1.1
+menu_name: product_voyager_7.2.0
 section_menu_id: guides
 ---
 > New to Voyager? Please start [here](/docs/concepts/overview.md).
@@ -44,7 +44,7 @@ spec:
 
 ## NodePort Ingress
 
-`external-dns` does not support [NodePort](/docs/concepts/ingress-types/nodeport.md) ingress.
+Since [v0.5.3](https://github.com/kubernetes-incubator/external-dns/releases/tag/v0.5.3), `external-dns` supports [NodePort](/docs/concepts/ingress-types/nodeport.md) ingress.
 
 
 ## HostPort Ingress

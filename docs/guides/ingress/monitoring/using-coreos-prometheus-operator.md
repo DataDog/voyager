@@ -1,13 +1,13 @@
 ---
 title: Monitor HAProxy using CoreOS Prometheus operator
 menu:
-  product_voyager_7.1.1:
+  product_voyager_7.2.0:
     identifier: coreos-operator-monitoring
     name: Monitor with CoreOS Prometheus operator
     parent: monitoring-ingress
     weight: 20
 product_name: voyager
-menu_name: product_voyager_7.1.1
+menu_name: product_voyager_7.2.0
 section_menu_id: guides
 ---
 > New to Voyager? Please start [here](/docs/concepts/overview.md).
@@ -40,12 +40,10 @@ Note that the yaml files that are used in this tutorial, stored in [docs/example
 
 ## Deploy CoreOS-Prometheus Operator
 
-### In RBAC enabled cluster
-
-If RBAC *is* enabled, Run the following command to prepare your cluster for this tutorial:
+Now, run the following command to prepare your cluster for this tutorial:
 
 ```console
-$ kubectl create -f https://raw.githubusercontent.com/appscode/voyager/7.1.1/docs/examples/monitoring/coreos-operator/rbac/demo-0.yaml
+$ kubectl create -f https://raw.githubusercontent.com/appscode/voyager/7.2.0/docs/examples/monitoring/coreos-operator/demo-0.yaml
 clusterrole "prometheus-operator" created
 serviceaccount "prometheus-operator" created
 clusterrolebinding "prometheus-operator" created
@@ -66,55 +64,10 @@ servicemonitors.monitoring.coreos.com   11m
 Once the Prometheus operator CRDs are registered, run the following command to create a Prometheus.
 
 ```console
-$ kubectl create -f https://raw.githubusercontent.com/appscode/voyager/7.1.1/docs/examples/monitoring/coreos-operator/rbac/demo-1.yaml
+$ kubectl create -f https://raw.githubusercontent.com/appscode/voyager/7.2.0/docs/examples/monitoring/coreos-operator/demo-1.yaml
 clusterrole "prometheus" created
 serviceaccount "prometheus" created
 clusterrolebinding "prometheus" created
-prometheus "prometheus" created
-service "prometheus" created
-
-# Verify RBAC stuffs
-$ kubectl get clusterroles
-NAME                  AGE
-prometheus            48s
-prometheus-operator   1m
-
-$ kubectl get clusterrolebindings
-NAME                  AGE
-prometheus            7s
-prometheus-operator   25s
-
-$ kubectl get serviceaccounts -n demo
-NAME                  SECRETS   AGE
-default               1         5m
-prometheus            1         4m
-prometheus-operator   1         5m
-```
-
-### In RBAC \*not\* enabled cluster
-
-If RBAC *is not* enabled, Run the following command to prepare your cluster for this tutorial:
-
-```console
-$ kubectl create -f https://raw.githubusercontent.com/appscode/voyager/7.1.1/docs/examples/monitoring/coreos-operator/demo-0.yaml
-deployment "prometheus-operator" created
-
-$ kubectl get pods -n demo --watch
-NAME                                   READY     STATUS              RESTARTS   AGE
-prometheus-operator-5dcd844486-nprmk   0/1       ContainerCreating   0          27s
-prometheus-operator-5dcd844486-nprmk   1/1       Running   0         46s
-
-$ kubectl get crd
-NAME                                    AGE
-alertmanagers.monitoring.coreos.com     45s
-prometheuses.monitoring.coreos.com      44s
-servicemonitors.monitoring.coreos.com   44s
-```
-
-Once the Prometheus operator CRDs are registered, run the following command to create a Prometheus.
-
-```console
-$ kubectl create -f https://raw.githubusercontent.com/appscode/voyager/7.1.1/docs/examples/monitoring/coreos-operator/demo-1.yaml
 prometheus "prometheus" created
 service "prometheus" created
 ```
@@ -150,7 +103,7 @@ kubectl expose deployment nginx --name=web --port=80 --target-port=80 -n demo
 Now create Ingress `ing.yaml`
 
 ```console
-$ kubectl apply -f https://raw.githubusercontent.com/appscode/voyager/7.1.1/docs/examples/monitoring/coreos-operator/ing.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/appscode/voyager/7.2.0/docs/examples/monitoring/coreos-operator/ing.yaml
 ingress "stats-ing" created
 ```
 

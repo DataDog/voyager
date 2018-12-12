@@ -1,13 +1,13 @@
 ---
 title: TLS | Kubernetes Ingress
 menu:
-  product_voyager_7.1.1:
+  product_voyager_7.2.0:
     identifier: overview-tls
     name: Overview
     parent: tls-ingress
     weight: 10
 product_name: voyager
-menu_name: product_voyager_7.1.1
+menu_name: product_voyager_7.2.0
 section_menu_id: guides
 ---
 > New to Voyager? Please start [here](/docs/concepts/overview.md).
@@ -67,7 +67,7 @@ data:
 To issue a free TLS/SSL certificate from Let's Encrypt, create a `Certificate` object with the list of domains. To learn more, please visit the following links:
 
 - [Using HTTP-01 challenge](/docs/guides/certificate/http.md)
-- [Using DNS-01 challenge](/docs/guides/certificate/providers.md)
+- [Using DNS-01 challenge](/docs/guides/certificate/dns/providers.md)
 
 ## Secure HTTP Service
 

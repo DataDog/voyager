@@ -52,11 +52,12 @@ func (o *VoyagerOptions) Complete() error {
 
 func (o VoyagerOptions) Config() (*server.VoyagerConfig, error) {
 	// TODO have a "real" external address
-	if err := o.RecommendedOptions.SecureServing.MaybeDefaultWithSelfSignedCerts("localhost", nil, []net.IP{net.ParseIP("127.1.1.1")}); err != nil {
+	if err := o.RecommendedOptions.SecureServing.MaybeDefaultWithSelfSignedCerts("localhost", nil, []net.IP{net.ParseIP("127.0.0.1")}); err != nil {
 		return nil, errors.Errorf("error creating self-signed certificates: %v", err)
 	}
 
 	serverConfig := genericapiserver.NewRecommendedConfig(server.Codecs)
+	serverConfig.EnableMetrics = true
 	if err := o.RecommendedOptions.ApplyTo(serverConfig, server.Scheme); err != nil {
 		return nil, err
 	}
